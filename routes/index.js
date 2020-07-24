@@ -27,7 +27,7 @@ router.post('/admin_update', (req, res, next) => {
   if(admin !== 'alastair') {
     throw new Error('Not authorised to update users\' passwords')
   }
-  const {username, password, currentPassword} = req.body
+  const {username, password} = req.body
   return req.db.select('username', 'value')
     .from('radcheck')
     .where({attribute: 'Cleartext-Password', username})

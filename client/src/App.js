@@ -107,7 +107,6 @@ export default () => {
             </Route>
           </Switch>
         </Container>
-
     </>
     </Router>
   );
