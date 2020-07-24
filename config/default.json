@@ -1,0 +1,16 @@
+{
+  "app": {
+    "cookieDomain": "radiusman.play-consult.net"
+  },
+  "db": {
+    "client": "sqlite3",
+    "connection": {
+      "filename": "./dev.sqlite3"
+    }
+  },
+  "jwt": {
+    "secret": "shhhhhhared-secret",
+    "audience": "urn:playconsult:radiusmanagement",
+    "issuer": "urn:playconsult"
+  }
+}

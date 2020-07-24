@@ -1,0 +1,43 @@
+# This is a sample build configuration for JavaScript.
+# Check our guides at https://confluence.atlassian.com/x/14UWN for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: node:10.15.3
+
+pipelines:
+  default:
+    - parallel:
+      - step:
+          image:
+            name: 353458372617.dkr.ecr.eu-west-2.amazonaws.com/play/internal/build/pipe/sonar-pipe:latest
+            aws:
+              access-key: $AWS_BUILD_ACCESS_KEY_ID
+              secret-key: $AWS_BUILD_SECRET_ACCESS_KEY
+          script:
+            - /pipe.sh
+      - step:
+          image:
+            name: 353458372617.dkr.ecr.eu-west-2.amazonaws.com/play/internal/build/pipe/sonar-pipe:latest
+            aws:
+              access-key: $AWS_BUILD_ACCESS_KEY_ID
+              secret-key: $AWS_BUILD_SECRET_ACCESS_KEY
+          script:
+            - /pipe.sh client
+    - parallel:
+      - step:
+          image:
+            name: 353458372617.dkr.ecr.eu-west-2.amazonaws.com/play/internal/build/pipe/dependency-track-js-pipe:latest
+            aws:
+              access-key: $AWS_BUILD_ACCESS_KEY_ID
+              secret-key: $AWS_BUILD_SECRET_ACCESS_KEY
+          script:
+            - /pipe.sh
+      - step:
+          image:
+            name: 353458372617.dkr.ecr.eu-west-2.amazonaws.com/play/internal/build/pipe/dependency-track-js-pipe:latest
+            aws:
+              access-key: $AWS_BUILD_ACCESS_KEY_ID
+              secret-key: $AWS_BUILD_SECRET_ACCESS_KEY
+          script:
+            - DEPENDENCY_TRACK_PROJECT_ID=$DEPENDENCY_TRACK_PROJECT_ID_2 /pipe.sh client

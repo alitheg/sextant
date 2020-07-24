@@ -1,0 +1,23 @@
+{
+  "app": {
+    "cookieDomain": "COOKIE_DOMAIN"
+  },
+  "db": {
+    "client": "DATABASE_CLIENT",
+    "connection": {
+      "host": "DATABASE_HOST",
+      "database": "DATABASE_DB",
+      "user":     "DATABASE_USERNAME",
+      "password": "DATABASE_PASSWORD"
+    },
+    "pool": {
+      "min": "DATABASE_POOL_MIN",
+      "max": "DATABASE_POOL_MAX"
+    }
+  },
+  "jwt": {
+    "secret": "JWT_SECRET",
+    "audience": "JWT_AUDIENCE",
+    "issuer": "JWT_ISSUER"
+  }
+}

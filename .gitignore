@@ -63,3 +63,5 @@ typings/
 *.sqlite3
 
 config/local.*
+
+.vscode
