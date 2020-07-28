@@ -2,19 +2,18 @@ const express = require('express');
 const knex = require('knex');
 const jwt = require("jsonwebtoken");
 const config = require('config');
+
+const UserController = require('../controllers/user')
+
 const router = express.Router();
 
 router.post('/update', (req, res, next) => {
   const {username, password, currentPassword} = req.body
-  return req.db.select('username', 'value')
-    .from('radcheck')
-    .where({'attribute': 'Cleartext-Password', value: currentPassword, username})
-    .first()
+  const userController = UserController(req.db)
+  return userController.getUserByUsernameAndPassword(username, currentPassword, 'username')
     .then((entry) => {
       if(entry) {
-        return req.db.table('radcheck')
-          .update({value: password})
-          .where({attribute: 'Cleartext-Password', value: currentPassword, username})
+        return userController.setPassword(username, password)
           .then(() => res.send('success'))
       } else {
         throw new Error('Invalid info entered')
@@ -25,18 +24,14 @@ router.post('/update', (req, res, next) => {
 router.post('/admin_update', (req, res, next) => {
   const {username: admin} = req.user
   if(admin !== 'alastair') {
-    throw new Error('Not authorised to update users\' passwords')
+    res.status(401).send({message: 'Not authorised to update users\' passwords'})
   }
   const {username, password} = req.body
-  return req.db.select('username', 'value')
-    .from('radcheck')
-    .where({attribute: 'Cleartext-Password', username})
-    .first()
+  const userController = UserController(req.db)
+  return userController.getUserByUsername(username, 'username')
     .then((entry) => {
       if(entry) {
-        return req.db.table('radcheck')
-          .update({value: password})
-          .where({attribute: 'Cleartext-Password', username})
+        return userController.setPassword(username, password)
           .then(() => res.send('success'))
       } else {
         throw new Error('Invalid info entered')
@@ -46,20 +41,17 @@ router.post('/admin_update', (req, res, next) => {
 
 router.post('/admin_create', (req, res, next) => {
   const {username: admin} = req.user
-  if(admin !== 'alastair') { // TODO: Split this to a separate user
-    throw new Error('Not authorised to create users')
+  if(admin !== 'alastair') { // TODO: make dynamic
+    res.status(401).send({message: 'Not authorised to create users'})
   }
   const {username, password} = req.body
-  return req.db.select('username')
-    .from('radcheck')
-    .where({username})
-    .first()
+  const userController = UserController(req.db)
+  return userController.getUserByUsername(username, 'username')
     .then((entry) => {
       if(entry) {
         throw new Error('User already exists')
       } else {
-        return req.db.table('radcheck')
-          .insert({username, attribute: 'Cleartext-Password', op: ':=', value: password})
+        return userController.createUser(username, password)
           .then(() => res.send('success'))
       }
     }).catch((e) => next(e))
@@ -67,10 +59,8 @@ router.post('/admin_create', (req, res, next) => {
 
 router.post('/login', (req, res, next) => {
   const {username, password} = req.body;
-  return req.db.select('username')
-    .from('radcheck')
-    .where({attribute: 'Cleartext-Password', value: password, username})
-    .first()
+  const userController = UserController(req.db)
+  return userController.getUserByUsernameAndPassword(username, password, 'username')
     .then((entry) => {
       if(entry) {
         res.cookie(
@@ -86,6 +76,7 @@ router.post('/login', (req, res, next) => {
         );
         res.status(200).send({username})
       } else {
+        res.status(404).send({})
         throw new Error('Invalid info entered')
       }
     }).catch((e) => next(e))
