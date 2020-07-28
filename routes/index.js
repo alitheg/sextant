@@ -24,7 +24,7 @@ router.post('/update', (req, res, next) => {
 router.post('/admin_update', (req, res, next) => {
   const {username: admin} = req.user
   if(admin !== 'alastair') {
-    res.status(401).send({message: 'Not authorised to update users\' passwords'})
+    return next({status: 401, message: 'Not authorised to update users\' passwords'})
   }
   const {username, password} = req.body
   const userController = UserController(req.db)
@@ -42,7 +42,7 @@ router.post('/admin_update', (req, res, next) => {
 router.post('/admin_create', (req, res, next) => {
   const {username: admin} = req.user
   if(admin !== 'alastair') { // TODO: make dynamic
-    res.status(401).send({message: 'Not authorised to create users'})
+    return next({status: 401, message: 'Not authorised to create users'})
   }
   const {username, password} = req.body
   const userController = UserController(req.db)
