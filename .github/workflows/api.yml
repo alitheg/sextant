@@ -28,7 +28,11 @@ jobs:
       with:
         fetch-depth: 0
 
-    - run: npm test
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - run: yarn install
+    - run: yarn test
 
 
     - name: Setup sonarqube
