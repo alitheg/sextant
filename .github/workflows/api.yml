@@ -28,6 +28,8 @@ jobs:
       with:
         fetch-depth: 0
 
+    - run: npm test
+
 
     - name: Setup sonarqube
       uses: warchant/setup-sonar-scanner@v1
