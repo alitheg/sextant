@@ -35,7 +35,7 @@ jobs:
 
     - name: Configure NPM
       run: |
-        echo "//npm.play-consult.net/:_authToken=$YARN_TOKEN" > .npmrc
+        echo "//npm.play-consult.net/:_authToken=$NODE_AUTH_TOKEN" > .npmrc
         echo 'registry=https://npm.play-consult.net' >> .npmrc
         echo '//npm.play-consult.net/:always-auth = true' >> .npmrc
       env:
