@@ -33,9 +33,14 @@ jobs:
         node-version: '12.x'
         registry-url: https://npm.play-consult.net
 
-    - run: yarn install
+    - name: Configure NPM
+      run: |
+        echo "//npm.play-consult.net/:_authToken=$YARN_TOKEN" > .npmrc
+        echo 'registry=https://npm.play-consult.net' >> .npmrc
       env:
         NODE_AUTH_TOKEN: ${{ secrets.YARN_TOKEN }}
+
+    - run: yarn install
     - run: yarn test
 
 
