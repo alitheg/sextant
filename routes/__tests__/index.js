@@ -60,7 +60,7 @@ describe('API', () => {
     expect(mockController.getUserByUsernameAndPassword).toHaveBeenCalledTimes(1);
     expect(mockController.getUserByUsernameAndPassword).toHaveBeenCalledWith(username, password, "username");
   });
-  it('should allow anonymous users to reset their password', async () => {
+  it('should allow self-service users to reset their password', async () => {
     const username = faker.internet.userName()
     const password = faker.internet.password()
     const currentPassword = faker.internet.password()
@@ -73,6 +73,21 @@ describe('API', () => {
     expect(mockController.setPassword).toHaveBeenCalledTimes(1);
     expect(mockController.setPassword).toHaveBeenCalledWith(username, password);
     expect(res.text).toEqual('success')
+  });
+  it('should throw an error if self-service user or password is wrong', async () => {
+    mockController.getUserByUsernameAndPassword = jest.fn().mockImplementation(() => new Promise((resolve, reject) => {
+      return resolve(null)
+    }))
+    const username = faker.internet.userName()
+    const password = faker.internet.password()
+    const currentPassword = faker.internet.password()
+    const res = await request(app)
+      .post('/api/update')
+      .send({username, password, currentPassword})
+    expect(res.statusCode).toEqual(500)
+    expect(mockController.getUserByUsernameAndPassword).toHaveBeenCalledTimes(1);
+    expect(mockController.getUserByUsernameAndPassword).toHaveBeenCalledWith(username, currentPassword, "username");
+    expect(mockController.setPassword).toHaveBeenCalledTimes(0);
   });
   it('should allow logged-in, authorised users to reset a password', async () => {
     const username = 'alastair' // TODO: make dynamic
@@ -95,6 +110,29 @@ describe('API', () => {
     expect(mockController.setPassword).toHaveBeenCalledTimes(1);
     expect(mockController.setPassword).toHaveBeenCalledWith(username, password);
     expect(res.text).toEqual('success')
+  });
+  it('should throw an error if a logged-in, authorised users enters an invalid user', async () => {
+    mockController.getUserByUsername = jest.fn().mockImplementation(() => new Promise((resolve, reject) => {
+      return resolve(null)
+    }))
+    const username = 'alastair' // TODO: make dynamic
+    const password = faker.internet.password()
+    const currentPassword = faker.internet.password()
+    const authToken = JWT.sign(
+      Object.assign({username}, {
+        iss: config.get("jwt.issuer"),
+        aud: config.get("jwt.audience")
+      }),
+      config.get("jwt.secret")
+    )
+    const res = await request(app)
+      .post('/api/admin_update')
+      .set('Cookie', [`_radiusManagementSessionToken=${authToken}`])
+      .send({username, password})
+    expect(res.statusCode).toEqual(500)
+    expect(mockController.getUserByUsername).toHaveBeenCalledTimes(1);
+    expect(mockController.getUserByUsername).toHaveBeenCalledWith(username, "username");
+    expect(mockController.setPassword).toHaveBeenCalledTimes(0);
   });
   it('should deny unauthorised users from resetting a password', async () => {
     const username = faker.internet.userName()
