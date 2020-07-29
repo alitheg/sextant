@@ -1,66 +1,63 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Login Page Matches snapshots 1`] = `
-Array [
-  <div
-    className="container"
+<div
+  className="container"
+>
+  <h1>
+    Log In
+  </h1>
+  <form
+    className=""
   >
-    <h1>
-      Log In
-    </h1>
-    <form
-      className=""
+    <div
+      className="form-group"
     >
-      <div
-        className="form-group"
+      <label
+        className="form-label"
+        htmlFor="userUpdate.Username"
       >
-        <label
-          className="form-label"
-          htmlFor="userUpdate.Username"
-        >
-          Username
-        </label>
-        <input
-          className="form-control"
-          id="userUpdate.Username"
-          onChange={[Function]}
-          placeholder="Username"
-          required={true}
-          type="string"
-          value=""
-        />
-      </div>
-      <div
-        className="form-group"
+        Username
+      </label>
+      <input
+        className="form-control"
+        id="userUpdate.Username"
+        onChange={[Function]}
+        placeholder="Username"
+        required={true}
+        type="string"
+        value=""
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        className="form-label"
+        htmlFor="userUpdate.Password"
       >
-        <label
-          className="form-label"
-          htmlFor="userUpdate.Password"
-        >
-          Password
-        </label>
-        <input
-          className="form-control"
-          id="userUpdate.Password"
-          onChange={[Function]}
-          placeholder="Password"
-          required={true}
-          type="password"
-          value=""
-        />
-      </div>
-      <button
-        className="btn btn-info"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
-      >
-        Login
-      </button>
-    </form>
-  </div>,
-  ",",
-]
+        Password
+      </label>
+      <input
+        className="form-control"
+        id="userUpdate.Password"
+        onChange={[Function]}
+        placeholder="Password"
+        required={true}
+        type="password"
+        value=""
+      />
+    </div>
+    <button
+      className="btn btn-info"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Login
+    </button>
+  </form>
+</div>
 `;
 
-exports[`Login Page Matches snapshots 2`] = `","`;
+exports[`Login Page Matches snapshots 2`] = `null`;

@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Password Reset Page Matches snapshots 1`] = `
+<div
+  className="container-fluid"
+>
+  <div>
+    <h2>
+      Update user password
+    </h2>
+    <form
+      className=""
+      onSubmit={[Function]}
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+          htmlFor="userUpdate.Username"
+        >
+          Username
+        </label>
+        <input
+          className="form-control"
+          id="userUpdate.Username"
+          onChange={[Function]}
+          placeholder="Username"
+          required={true}
+          type="string"
+          value=""
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+          htmlFor="userUpdate.CurrentPassword"
+        >
+          Current Password
+        </label>
+        <input
+          className="form-control"
+          id="userUpdate.CurrentPassword"
+          onChange={[Function]}
+          placeholder="Current Password"
+          required={true}
+          type="password"
+          value=""
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+          htmlFor="userUpdate.Password"
+        >
+          Password
+        </label>
+        <input
+          className="form-control"
+          id="userUpdate.Password"
+          onChange={[Function]}
+          pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])\\\\S{6,}"
+          placeholder="Password"
+          required={true}
+          type="password"
+          value=""
+        />
+      </div>
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        type="submit"
+      >
+        Update
+      </button>
+    </form>
+  </div>
+  Errorundefined
+</div>
+`;
+
+exports[`Password Reset Page Matches snapshots 2`] = `
+<div
+  className="container-fluid"
+>
+  <div>
+    <h2>
+      Update user password
+    </h2>
+    <form
+      className=""
+      onSubmit={[Function]}
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+          htmlFor="userUpdate.Username"
+        >
+          Username
+        </label>
+        <input
+          className="form-control"
+          id="userUpdate.Username"
+          onChange={[Function]}
+          placeholder="Username"
+          required={true}
+          type="string"
+          value=""
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+          htmlFor="userUpdate.Password"
+        >
+          Password
+        </label>
+        <input
+          className="form-control"
+          id="userUpdate.Password"
+          onChange={[Function]}
+          pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])\\\\S{6,}"
+          placeholder="Password"
+          required={true}
+          type="password"
+          value=""
+        />
+      </div>
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        type="submit"
+      >
+        Update
+      </button>
+    </form>
+  </div>
+  Errorundefined
+</div>
+`;

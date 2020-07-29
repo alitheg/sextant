@@ -1,49 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Home Page Matches snapshots 1`] = `
-Array [
+<div
+  className="jumbotron"
+>
   <div
-    className="jumbotron"
+    className="container"
   >
-    <div
-      className="container"
-    >
-      <h1>
-        Sextant: RADIUS Management
-      </h1>
-      <p>
-        Please log in to continue
-        <a
-          className="btn btn-info"
-          href="/login"
-          onClick={[Function]}
-          onKeyDown={[Function]}
-        >
-          Login
-        </a>
-      </p>
-    </div>
-  </div>,
-  ",",
-]
+    <h1>
+      Sextant: RADIUS Management
+    </h1>
+    <p>
+      Please log in to continue
+      <a
+        className="btn btn-info"
+        href="/login"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+      >
+        Login
+      </a>
+    </p>
+  </div>
+</div>
 `;
 
 exports[`Home Page Matches snapshots 2`] = `
-Array [
+<div
+  className="jumbotron"
+>
   <div
-    className="jumbotron"
+    className="container"
   >
-    <div
-      className="container"
-    >
-      <h1>
-        Sextant: RADIUS Management
-      </h1>
-      <p>
-        Welcome
-      </p>
-    </div>
-  </div>,
-  ",",
-]
+    <h1>
+      Sextant: RADIUS Management
+    </h1>
+    <p>
+      Welcome
+    </p>
+  </div>
+</div>
 `;

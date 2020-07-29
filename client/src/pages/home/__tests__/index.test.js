@@ -13,7 +13,7 @@ describe('Home Page', () => {
   test('Matches snapshots', () => {
     let component = renderer.create(
       <Router>
-        <HomePage loggedIn={false} />,
+        <HomePage loggedIn={false} />
       </Router>
     );
 
@@ -22,7 +22,7 @@ describe('Home Page', () => {
 
     component = renderer.create(
       <Router>
-        <HomePage loggedIn={true} />,
+        <HomePage loggedIn={true} />
       </Router>
     );
 
@@ -32,7 +32,7 @@ describe('Home Page', () => {
   test('When logged out, allows the user to log in', () => {
     const { getByText } = render(
       <Router>
-        <HomePage loggedIn={false} />,
+        <HomePage loggedIn={false} />
       </Router>
     );
 

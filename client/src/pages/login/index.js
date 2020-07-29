@@ -41,11 +41,11 @@ export default ({ loggedIn, setLoggedIn }) => {
           <Form>
             <Form.Group controlId="userUpdate.Username">
               <Form.Label>Username</Form.Label>
-              <Form.Control required type="string" placeholder="Username" value={username} onChange={onChangeUsername} />
+              <Form.Control required type="string" placeholder="Username" value={username} onChange={event => onChangeUsername(event)} />
             </Form.Group>
             <Form.Group controlId="userUpdate.Password">
               <Form.Label>Password</Form.Label>
-              <Form.Control required type="password" placeholder="Password" value={password} onChange={onChangePassword} />
+              <Form.Control required type="password" placeholder="Password" value={password} onChange={event => onChangePassword(event)} />
             </Form.Group>
             <Button disabled={isLoading} onClick={login} variant="info">{ isLoading? "Loading" : "Login"}</Button>
           </Form>
