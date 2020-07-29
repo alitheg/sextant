@@ -8,7 +8,7 @@ export default ({ loggedIn }) => {
   return (
     <Jumbotron>
       <Container>
-        <h1>Sextant Radius Management</h1>
+        <h1>Sextant: RADIUS Management</h1>
         { !loggedIn &&
           <p>Please log in to continue
             <LinkContainer to="/login">

@@ -16,7 +16,6 @@ class UserController {
   }
 
   getUserByUsernameAndPassword(username, password, ...fields) {
-    console.log('HELP', this.db)
     return this.db.select(...fields)
       .from(table)
       .where({attribute, value: password, username})
@@ -35,4 +34,5 @@ class UserController {
   }
 }
 
-export default (db) => new UserController(db)
+module.exports = (db) => new UserController(db)
+module.exports.Class = UserController
