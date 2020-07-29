@@ -32,6 +32,7 @@ jobs:
 
 
     - uses: actions/setup-node@v1
+      working-directory: client
       with:
         node-version: '12.x'
         registry-url: https://npm.play-consult.net
@@ -45,7 +46,9 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.YARN_TOKEN }}
 
     - run: yarn install
+      working-directory: client
     - run: yarn test
+      working-directory: client
 
     - name: Setup sonarqube
       uses: warchant/setup-sonar-scanner@v1
