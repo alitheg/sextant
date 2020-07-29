@@ -30,6 +30,23 @@ jobs:
       with:
         fetch-depth: 0
 
+
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        registry-url: https://npm.play-consult.net
+
+    - name: Configure NPM
+      run: |
+        echo "//npm.play-consult.net/:_authToken=$NODE_AUTH_TOKEN" > .npmrc
+        echo 'registry=https://npm.play-consult.net' >> .npmrc
+        echo '//npm.play-consult.net/:always-auth = true' >> .npmrc
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.YARN_TOKEN }}
+
+    - run: yarn install
+    - run: yarn test
+
     - name: Setup sonarqube
       uses: warchant/setup-sonar-scanner@v1
 

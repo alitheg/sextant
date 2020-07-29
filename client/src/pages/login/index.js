@@ -34,24 +34,24 @@ export default ({ loggedIn, setLoggedIn }) => {
 
   return (
     <>
-      { (loggedIn) &&
-        <Redirect to="/" />
+      { ((loggedIn) &&
+        <Redirect to="/" />) ||
+        <Container>
+          <h1>Log In</h1>
+          <Form>
+            <Form.Group controlId="userUpdate.Username">
+              <Form.Label>Username</Form.Label>
+              <Form.Control required type="string" placeholder="Username" value={username} onChange={onChangeUsername} />
+            </Form.Group>
+            <Form.Group controlId="userUpdate.Password">
+              <Form.Label>Password</Form.Label>
+              <Form.Control required type="password" placeholder="Password" value={password} onChange={onChangePassword} />
+            </Form.Group>
+            <Button disabled={isLoading} onClick={login} variant="info">{ isLoading? "Loading" : "Login"}</Button>
+          </Form>
+          {(data && hasError) && "Error"}
+        </Container>
       }
-      <Container>
-        <h1>Log In</h1>
-        <Form>
-          <Form.Group controlId="userUpdate.Username">
-            <Form.Label>Username</Form.Label>
-            <Form.Control required type="string" placeholder="Username" value={username} onChange={onChangeUsername} />
-          </Form.Group>
-          <Form.Group controlId="userUpdate.Password">
-            <Form.Label>Password</Form.Label>
-            <Form.Control required type="password" placeholder="Password" value={password} onChange={onChangePassword} />
-          </Form.Group>
-          <Button disabled={isLoading} onClick={login} variant="info">{ isLoading? "Loading" : "Login"}</Button>
-        </Form>
-        {(data && hasError) && "Error"}
-      </Container>
     </>
   )
 }
