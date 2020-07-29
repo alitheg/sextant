@@ -7,9 +7,11 @@ on:
     branches: [ master ]
     paths-ignore:
     - 'client/**'
+    - '.github/workflows/client.yml
   pull_request:
     paths-ignore:
     - 'client/**'
+    - '.github/workflows/client.yml'
 
 env:
   SONAR_TOKEN: ${{ secrets.SONAR_ACCESS_TOKEN }}

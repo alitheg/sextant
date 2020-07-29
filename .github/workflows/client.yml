@@ -9,9 +9,11 @@ on:
     branches: [ master ]
     paths:
     - 'client/**'
+    - '.github/workflows/client.yml'
   pull_request:
     paths:
     - 'client/**'
+    - '.github/workflows/client.yml'
 
 env:
   SONAR_TOKEN: ${{ secrets.SONAR_ACCESS_TOKEN }}
